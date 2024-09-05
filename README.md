@@ -1,6 +1,6 @@
 # scss-variable-completions README
 
-This is the README for your extension "scss-variable-completions". After writing up a brief description, we recommend including the following sections.
+输入 `#颜色值` 或 `$变量` 时，提示对应的 scss 变量
 
 ## Extension Settings
 
