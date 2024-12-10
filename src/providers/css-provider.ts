@@ -1,16 +1,13 @@
 import { CompletionItem, CompletionItemKind, CompletionItemProvider, Position, TextDocument } from "vscode";
-import { CACHE, COLOR_PREFIX, SCSS_VARIABLE_PREFIX } from "../constants";
+import { CACHE, COLOR_PREFIX, CSS_VARIABLE_PREFIX } from "../constants";
 
 // 输入颜色提示变量
-export class ColorToScssVariableProvider implements CompletionItemProvider {
+export class ColorToCssVariableProvider implements CompletionItemProvider {
     provideCompletionItems(
 		document: TextDocument,
 		position: Position
 	) {
-		// const linePrefix = document
-		// 	.lineAt(position)
-		// 	.text.slice(position.character - 1);
-		const variables = CACHE.scssVariablesList;
+		const variables = CACHE.cssVariablesList;
 		const lineText = document.lineAt(position.line).text;
 
 		if (lineText.includes(COLOR_PREFIX)) {
@@ -22,7 +19,7 @@ export class ColorToScssVariableProvider implements CompletionItemProvider {
 					CompletionItemKind.Variable
 				);
 				completionItem.detail = item.variable;
-				completionItem.insertText = item.variable;
+				completionItem.insertText = `var(${item.variable})`;
 				colorCompletionItems.push(completionItem);
 			});
 
@@ -34,15 +31,15 @@ export class ColorToScssVariableProvider implements CompletionItemProvider {
 }
 
 // 输入变量提示
-export class ScssVariableProvider implements CompletionItemProvider {
+export class CssVariableProvider implements CompletionItemProvider {
 	provideCompletionItems(
 		document: TextDocument,
 		position: Position
 	) {
-		const variables = CACHE.scssVariablesList;
+		const variables = CACHE.cssVariablesList;
 		const lineText = document.lineAt(position.line).text;
 
-		if (lineText.includes(SCSS_VARIABLE_PREFIX)) {
+		if (lineText.includes(CSS_VARIABLE_PREFIX)) {
 			const colorCompletionItems: CompletionItem[] = [];
 
 			variables.forEach((item) => {

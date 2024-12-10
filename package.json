@@ -27,7 +27,19 @@
           "default": [
             "relative/path/to/file.scss"
           ],
-          "description": "配置样式变量文件的相对路径"
+          "description": "scss样式变量文件的相对路径"
+        },
+        "scss-variable-completions.variableCssPaths": {
+          "type": "array",
+          "default": [
+            "relative/path/to/file.css"
+          ],
+          "description": "css样式变量文件的相对路径"
+        },
+        "scss-variable-completions.variableCssTheme": {
+          "type": "string",
+          "default": "dark",
+          "description": "css变量文件中需要提示的主题"
         }
       }
     }

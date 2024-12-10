@@ -1,12 +1,16 @@
 export const COLOR_PREFIX = '#';
-export const VARIABLE_PREFIX = '$';
+export const SCSS_VARIABLE_PREFIX = '$';
+export const CSS_VARIABLE_PREFIX = 'var';
 export const SCSS = ['scss'];
+export const All_STYLE = ['css', 'scss', 'less'];
 
 type CacheType = {
-	variablesList: { color: string; variable: string }[];
+	scssVariablesList: { color: string; variable: string }[];
+	cssVariablesList: { color: string; variable: string }[];
 	activeRootPath: string;
 };
 export const CACHE: CacheType = {
-	variablesList: [],
+	scssVariablesList: [],
+	cssVariablesList: [],
 	activeRootPath: '',
 };
