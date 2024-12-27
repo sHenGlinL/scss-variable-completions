@@ -4,9 +4,15 @@ export const CSS_VARIABLE_PREFIX = 'var';
 export const SCSS = ['scss'];
 export const All_STYLE = ['css', 'scss', 'less'];
 
+export type VariableListType = {
+	theme?: string;
+	monorepo: string;
+	variableList: { color: string; variable: string }[];
+};
+
 type CacheType = {
-	scssVariablesList: { color: string; variable: string }[];
-	cssVariablesList: { color: string; variable: string }[];
+	scssVariablesList: VariableListType[];
+	cssVariablesList: VariableListType[];
 	activeRootPath: string;
 };
 export const CACHE: CacheType = {
