@@ -32,9 +32,15 @@ export const parseScssVariables = () => {
     const variableList: VariableListType[] = [];
 
     for (let { monorepo, path } of filePaths) {
-      const data = fs.readFileSync(path, "utf-8");
-      const regex = /\$([\w-]+):\s*(#[0-9a-fA-F]+);/g;
+      let data;
+      try {
+        data = fs.readFileSync(path, "utf-8");
+      } catch (error) {
+        console.error("目录不存在");
+      }
+      if (!data) {continue;}
 
+      const regex = /\$([\w-]+):\s*(#[0-9a-fA-F]+);/g;
       let match;
       let variables = [];
       while ((match = regex.exec(data)) !== null) {
@@ -74,10 +80,15 @@ export const parseCssVariables = () => {
     const variableList: VariableListType[] = [];
 
     for (let { monorepo, path } of filePaths) {
-      const data = fs.readFileSync(path, "utf-8");
+      let data;
+      try {
+        data = fs.readFileSync(path, "utf-8");
+      } catch (error) {
+        console.error("目录不存在");
+      }
+      if (!data) {continue;}
 
       let match;
-
       while ((match = themeRegex.exec(data)) !== null) {
         const theme = match[1]; // 'Dark' 或 'Light'
         const variablesText = match[2]; // 包含变量和颜色的文本
